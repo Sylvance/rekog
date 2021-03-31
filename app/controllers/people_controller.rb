@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
 
   # GET /people or /people.json
   def index
-    @people = Person.all
+    @people = Person.all.with_attached_image
   end
 
   # GET /people/1 or /people/1.json
@@ -64,6 +64,6 @@ class PeopleController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.require(:person).permit(:firstname, :middlename, :lastname, :email, :phone, :residence, :meta)
+      params.require(:person).permit(:firstname, :middlename, :lastname, :email, :residence, :image)
     end
 end

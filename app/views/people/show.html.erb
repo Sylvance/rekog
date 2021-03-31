@@ -21,19 +21,15 @@
 </p>
 
 <p>
-  <strong>Phone:</strong>
-  <%= @person.phone %>
-</p>
-
-<p>
   <strong>Residence:</strong>
   <%= @person.residence %>
 </p>
-
-<p>
-  <strong>Meta:</strong>
-  <%= @person.meta %>
-</p>
+<% if @person.image.attached? %>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag @person.image.variant(resize_to_limit: [200, 200]) %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
