@@ -38,7 +38,7 @@ class ImageQueriesController < ApplicationController
   def update
     respond_to do |format|
       if @image_query.update(image_query_params)
-        format.html { redirect_to @image_query, notice: "Image query was successfully updated." }
+        format.html { redirect_to @image_query, notice: "Image query results are in!" }
         format.json { render :show, status: :ok, location: @image_query }
       else
         format.html { render :edit, status: :unprocessable_entity }
