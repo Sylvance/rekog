@@ -30,6 +30,6 @@ class ImageQuery < ApplicationRecord
     end
 
     def aws_rekog_client
-      ImageQueriesHelper::AwsRekognitionClient.new(image, person.image)
+      ImageQueriesHelper::AwsRekognitionClient.new(image.download, person.image.download)
     end
 end
