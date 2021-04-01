@@ -11,11 +11,11 @@ module ImageQueriesHelper
     end
 
     def matches
-      compare.face_matches
+      @matches ||= compare.face_matches
     end
 
     def detected
-      detect.face_details
+      @detected||= detect.face_details
     end
 
     def matches_to_s
