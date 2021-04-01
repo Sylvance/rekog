@@ -1,6 +1,6 @@
 module ImageQueriesHelper
   class AwsRekognitionClient
-    def initialize(source_image, target_image: nil)
+    def initialize(source_image, target_image)
       @credentials = Aws::Credentials.new(
         ENV['AWS_ACCESS_KEY_ID'],
         ENV['AWS_SECRET_ACCESS_KEY']
