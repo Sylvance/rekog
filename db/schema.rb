@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_221017) do
+ActiveRecord::Schema.define(version: 2021_03_31_235143) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2021_03_31_221017) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "image_queries", force: :cascade do |t|
+    t.string "name"
+    t.integer "person_id", null: false
+    t.boolean "is_match"
+    t.float "percentage_match"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["person_id"], name: "index_image_queries_on_person_id"
+  end
+
   create_table "people", force: :cascade do |t|
     t.string "firstname"
     t.string "middlename"
@@ -52,4 +62,5 @@ ActiveRecord::Schema.define(version: 2021_03_31_221017) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "image_queries", "people"
 end

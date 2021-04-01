@@ -1,0 +1,2 @@
+module ImageQueriesHelper
+end

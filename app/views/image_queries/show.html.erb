@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @image_query.name %>
+</p>
+
+<% if @image_query.person.image.attached? %>
+  <p>
+    <strong>Person Image:</strong>
+    <%= image_tag @image_query.person.image.variant(resize_to_limit: [200, 200]) %>
+  </p>
+<% end %>
+
+<p>
+  <strong>Is match:</strong>
+  <%= @image_query.is_match %>
+</p>
+
+<p>
+  <strong>Percentage match:</strong>
+  <%= @image_query.percentage_match %>
+</p>
+
+<% if @image_query.image.attached? %>
+  <p>
+    <strong>Image:</strong>
+    <%= image_tag @image_query.image.variant(resize_to_limit: [200, 200]) %>
+  </p>
+<% end %>
+
+<%= link_to 'Query Image match', edit_image_query_path(@image_query) %> |
+<%= link_to 'Back', image_queries_path %>
