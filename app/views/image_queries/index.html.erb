@@ -17,7 +17,7 @@
     <% @image_queries.each do |image_query| %>
       <tr>
         <td><%= image_query.name %></td>
-        <td><%= image_query.person_id %></td>
+        <td><%= image_query.person.firstname %></td>
         <td><%= image_query.is_match %></td>
         <td><%= image_query.percentage_match %></td>
         <td><%= link_to 'Show', image_query %></td>

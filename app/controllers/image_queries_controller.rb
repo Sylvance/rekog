@@ -64,6 +64,6 @@ class ImageQueriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def image_query_params
-      params.require(:image_query).permit(:name, :person_id, :is_match, :percentage_match, :image)
+      params.require(:image_query).permit(:name, :person_id, :is_match, :percentage_match, :image, :meta)
     end
 end

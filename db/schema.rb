@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_235143) do
+ActiveRecord::Schema.define(version: 2021_04_01_124921) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2021_03_31_235143) do
     t.float "percentage_match"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "matches_meta"
+    t.text "detected_meta"
     t.index ["person_id"], name: "index_image_queries_on_person_id"
   end
 

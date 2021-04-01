@@ -29,5 +29,19 @@
   </p>
 <% end %>
 
+<hr>
+<h3>Match details</h3>
+<p>
+  <strong>Data:</strong>
+  <%= @image_query.matches_meta %>
+</p>
+<br><br>
+<hr>
+<h3>Face detection details</h3>
+<p>
+  <strong>Data:</strong>
+  <%= @image_query.detected_meta %>
+</p>
+
 <%= link_to 'Query Image match', edit_image_query_path(@image_query) %> |
 <%= link_to 'Back', image_queries_path %>
