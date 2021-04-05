@@ -1,5 +1,5 @@
 class ImageQueriesController < ApplicationController
-  before_action :set_image_query, only: %i[ show edit update destroy ]
+  before_action :set_image_query, only: %i[ analyze_query show edit update destroy ]
 
   # GET /image_queries or /image_queries.json
   def index
@@ -17,6 +17,20 @@ class ImageQueriesController < ApplicationController
 
   # GET /image_queries/1/edit
   def edit
+  end
+
+  def analyze_query
+    result = ImageQueriesHelper::QueryImages.new(@image_query).run
+
+    respond_to do |format|
+      if result
+        format.html { redirect_to @image_query, notice: "Image query results are in!" }
+        format.json { render :show, status: :created, location: @image_query }
+      else
+        format.html { redirect_to @image_query, notice: "Could not process query. Try again." }
+        format.json { render :show, status: :unprocessable_entity, location: @image_query }
+      end
+    end
   end
 
   # POST /image_queries or /image_queries.json
@@ -38,7 +52,7 @@ class ImageQueriesController < ApplicationController
   def update
     respond_to do |format|
       if @image_query.update(image_query_params)
-        format.html { redirect_to @image_query, notice: "Image query results are in!" }
+        format.html { redirect_to @image_query, notice: "Image query was successfully updated." }
         format.json { render :show, status: :ok, location: @image_query }
       else
         format.html { render :edit, status: :unprocessable_entity }

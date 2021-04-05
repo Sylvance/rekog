@@ -108,4 +108,50 @@ module ImageQueriesHelper
       }
     end
   end
+
+  class QueryImages
+    def initialize(image_query)
+      @image_query = image_query
+    end
+
+    def run
+      set_queried_params
+      image_query.save
+    end
+
+    private
+
+    attr_reader :image_query
+
+    def set_queried_params
+      image_query.is_match = queried_is_match
+      image_query.percentage_match = queried_percentage_match
+      image_query.matches_meta = queried_matches_meta
+      image_query.detected_meta = queried_detected_meta
+    end
+
+    def queried_is_match
+      queried_percentage_match > 90 ? true : false
+    end
+
+    def queried_percentage_match
+      aws_rekog_client.matches.first.similarity
+    end
+
+    def queried_matches_meta
+      aws_rekog_client.matches_to_s
+    end
+
+    def queried_detected_meta
+      aws_rekog_client.detected_to_s
+    end
+
+    def aws_rekog_client
+      processed_source_image = image_query.image.variant(resize_to_limit: [200, 200]).processed
+      processed_target_image = image_query.person.image.variant(resize_to_limit: [200, 200]).processed
+      source_image = processed_source_image.download
+      target_image = processed_target_image.download
+      AwsRekognitionClient.new(source_image, target_image)
+    end
+  end
 end

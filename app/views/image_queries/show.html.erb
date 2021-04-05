@@ -43,5 +43,6 @@
   <%= @image_query.detected_meta %>
 </p>
 
-<%= link_to 'Query Image match', edit_image_query_path(@image_query) %> |
+<%= link_to 'Analyze query', analyze_query_path(@image_query) %> |
+<%= link_to 'Edit', edit_image_query_path(@image_query) %> |
 <%= link_to 'Back', image_queries_path %>
