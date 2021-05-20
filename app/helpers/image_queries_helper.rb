@@ -27,7 +27,6 @@ module ImageQueriesHelper
     end
 
     def detected_to_s
-      puts "Detected faces for: #{photo}"
       detected.each do |face_detail|
         low  = face_detail.age_range.low
         high = face_detail.age_range.high
